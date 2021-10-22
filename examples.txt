@@ -1,0 +1,13 @@
+./compile.sh
+
+./test_new_1.dbg
+./test_old_1.dbg
+
+./test_random.us.dbg 10000 2>&1 | less
+./test_random.ns.dbg 10000 2>&1 | less
+
+./sliding_window_count.us.dbg 8 75   50000 >TEST.log
+./sliding_window_span.us.dbg  8 75 4000000 >TEST.log
+
+./sliding_window_count.ns.dbg 8 75      50000 >TEST.log
+./sliding_window_span.ns.dbg  8 75 4000000000 >TEST.log

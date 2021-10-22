@@ -1,0 +1,5 @@
+*~
+*.exe
+*.dbg
+*.log
+*.gdb_history
