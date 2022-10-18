@@ -1,2 +1,2 @@
 # chronoqueue
-A chronologically ordered linked-list queue written in C
+A chronologically ordered linked-list queue written in ANSI C

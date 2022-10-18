@@ -1,5 +1,5 @@
 /*
-	A chronologically ordered linked-list queue written in C
+	A chronologically ordered linked-list queue written in ANSI C
 	Copyright (C) 2022 Brett Kuskie <fullaxx@gmail.com>
 
 	This program is free software; you can redistribute it and/or modify
@@ -158,7 +158,7 @@ long pipeline_count(void)
 	return g_count;
 }
 
-/* What is the timespan of the pipeline */
+/* What is the timespan of the pipeline? */
 long pipeline_span(void)
 {
 	long diff;
@@ -189,25 +189,25 @@ cqnode_t* pipeline_pop(int which)
 	if(which == CQ_NEWEST) {
 		if(g_newest) {
 			cursor = g_newest;
-			g_newest = g_newest->older;					//Update g_newest ptr
-			if(g_newest) { g_newest->newer = NULL; }	//Now there is nothing newer
-			else { g_oldest = NULL; }					//If there is nothing older, update g_oldest
+			g_newest = g_newest->older;					/* Update g_newest ptr */
+			if(g_newest) { g_newest->newer = NULL; }	/* Now there is nothing newer */
+			else { g_oldest = NULL; }					/* If there is nothing older, update g_oldest */
 			g_count--;
 		}
 	}
 	if(which == CQ_OLDEST) {
 		if(g_oldest) {
 			cursor = g_oldest;
-			g_oldest = g_oldest->newer;					//Update g_oldest ptr
-			if(g_oldest) { g_oldest->older = NULL; }	//Now there is nothing older
-			else { g_newest = NULL; }					//If there is nothing newer, update g_newest
+			g_oldest = g_oldest->newer;					/* Update g_oldest ptr */
+			if(g_oldest) { g_oldest->older = NULL; }	/* Now there is nothing older */
+			else { g_newest = NULL; }					/* If there is nothing newer, update g_newest */
 			g_count--;
 		}
 	}
 	PIPEUNLOCK;
 
 	if(cursor) {
-		//cursor is now an orphan
+		/* cursor is now an orphan */
 		cursor->newer = NULL;
 		cursor->older = NULL;
 	}

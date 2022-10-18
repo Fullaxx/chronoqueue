@@ -1,5 +1,5 @@
 /*
-	A chronologically ordered linked-list queue written in C
+	A chronologically ordered linked-list queue written in ANSI C
 	Copyright (C) 2022 Brett Kuskie <fullaxx@gmail.com>
 
 	This program is free software; you can redistribute it and/or modify
@@ -16,7 +16,6 @@
 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -76,12 +75,12 @@ static void add_random(void)
 	cqtime_t *cqts;
 	dp_t *dp;
 
-	// Create a data package
+	/* Create a data package */
 	dp = (dp_t *)malloc(sizeof(dp_t));
 	dp->buf = (unsigned char *)"?";
 	dp->len = 2;
 
-	// Generate a random timestamp
+	/* Generate a random timestamp */
 	clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
 	r = rand();
 
@@ -97,12 +96,12 @@ static void add_random(void)
 		ts.tv_nsec -= SSPERSEC;
 	}
 
-	// Convert to cqtime_t in case of CHRONOQUEUE_MICROSECOND
+	/* Convert to cqtime_t in case of CHRONOQUEUE_MICROSECOND */
 	cqts = malloc(sizeof(cqtime_t));
 	CQTSEC(cqts) = ts.tv_sec;
 	CQTSS(cqts) = ts.tv_nsec;
 
-	// Insert data package into the pipeline
+	/* Insert data package into the pipeline */
 	(void)pipeline_insert(dp, cqts);
 	free(cqts);
 }
