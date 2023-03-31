@@ -108,8 +108,6 @@ static void add_random(void)
 
 static void* gen_data(void *p)
 {
-	//
-
 	while(g_shutdown == 0) {
 		add_random();
 		usleep(g_delay);

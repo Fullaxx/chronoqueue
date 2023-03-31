@@ -48,13 +48,13 @@ unsigned long g_count = 0;
 */
 #define TIMEDIFF(a, b) (((CQTSEC(a)-CQTSEC(b))*SSPERSEC)+(CQTSS(a)-CQTSS(b)))
 
-static inline void bail(char *s)
+static void bail(char *s)
 {
 	fprintf(stderr, "%s\n", s);
 	exit(EXIT_FAILURE);
 }
 
-static inline void* new_cqnode(void)
+static void* new_cqnode(void)
 {
 	void *p = calloc(1, sizeof(cqnode_t));
 	if(!p) { bail("calloc() failed!"); }
